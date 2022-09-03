@@ -4,29 +4,27 @@ from .models import News, Category
 
 def index(request):
     allNews = News.objects.all()
-    allCategories = Category.objects.all()
-
     context = {
         'allnews': allNews,
-        'categories': allCategories
     }
     return render(request, 'newsapp/index.html', context=context)
 
 def get_category(request, category_id):
-    # category = Category.objects.get(pk = category_id)
     news = News.objects.filter(category_id = category_id)
-    categories = Category.objects.all()
     category = Category.objects.get(pk = category_id)
     context = {
         'news': news,
-        'categories': categories,
         'category': category
-
     }
-
     return render(request, 'newsapp/category.html', context = context)
 
 
+def show_news(request,news_id):
+    article = News.objects.get(id = news_id)
+    context = {
+        "article":article
+    }
+    return render(request, 'newsapp/article.html', context=context)
 
 
 

@@ -20,7 +20,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 # from newsapp.views import index, about, contact_us
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('newsapp.urls')),

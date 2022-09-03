@@ -1,16 +1,9 @@
 {% extends 'main.html' %}
 {% block sidebar %}
-    <div class="col-md-4">
-              <div class="list-group">
-                  {% for item in categories %}
-                <a href="/category/{{ item.pk }}" class="list-group-item list-group-item-action">{{ item.title_category }}</a>
-                {% endfor %}
-              </div>
-          </div>
+             {% include 'sidebar.html' %}
 {% endblock %}
 
 {% block content %}
-     <div class="col-md-8">
           {% for i in allnews %}
             <div class="card mb-3">
                   <div class="card-header text-center">
@@ -28,7 +21,7 @@
                               {% endif %}
                           </div>
                           <div class="col-md-8">
-                                 <p class="card-text">{{ i.content | linebreaks }}</p>
+                                 <p class="card-text">{{ i.content |linebreaks|truncatewords:90 }}</p>
                           </div>
                       </div>
 
@@ -37,11 +30,10 @@
                     {{ i.created_at | date:"H:i d/m/Y" }}
                   </div>
                           <div class="row">
-                    <a href="#" class="btn btn-primary">Читать подробнее</a>
+                    <a href="{% url 'show_news' i.id %}" class="btn btn-primary">Читать подробнее</a>
                   </div>
                 </div>
           {% endfor %}
               </div>
-      </div>
 {% endblock %}
 
