@@ -2,19 +2,25 @@
 {% block title %}
     {{ title }}
 {% endblock %}
+
 {% block sidebar %}
              {% include 'sidebar.html' %}
 {% endblock %}
 
 {% block content %}
-          {% for i in allnews %}
+          {% for i in news %}
             <div class="card mb-3">
                   <div class="card-header text-center">
-                    Категория: {{ i.category.title_category }}
+                    !!!Категория: {{ i.category.title_category }}
+<!--                      {% for i in regions %}-->
+<!--                      <p>  {{ i }}</p>-->
+<!--                      {% endfor %}-->
                   </div>
                   <div class="card-body">
                     <h5 class="card-title text-center">{{ i.title }}</h5>
                       <div class="row">
+
+
                           <div class="col-md-4">
                               {% if i.photo %}
                                 <img src="{{ i.photo.url }}" style="border: 2px solid black;" width="220" height="200">

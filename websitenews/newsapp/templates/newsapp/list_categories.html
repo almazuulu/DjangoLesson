@@ -2,6 +2,7 @@
 <div class="list-group">
 <!--            {% get_categories as categories %}-->
             {% for item in categories %}
-                <a href="/category/{{ item.pk }}" class="list-group-item list-group-item-action">{{ item.title_category }}</a>
+                <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.title_category }}</a>
+<!--                <a href="/category/{{ item.pk }}" class="list-group-item list-group-item-action">{{ item.title_category }}</a>-->
             {% endfor %}
  </div>
