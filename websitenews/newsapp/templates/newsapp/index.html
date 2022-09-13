@@ -3,10 +3,13 @@
     {{ title }}
 {% endblock %}
 {% block sidebar %}
+<div class="col-md-4">
              {% include 'sidebar.html' %}
+</div>
 {% endblock %}
 
 {% block content %}
+        <div class="col-md-8">
           {% for i in allnews %}
             <div class="card mb-3">
                   <div class="card-header text-center">
@@ -38,5 +41,6 @@
                 </div>
           {% endfor %}
               </div>
+        </div>
 {% endblock %}
 

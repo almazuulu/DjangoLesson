@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import News, Category
 from .forms import NewsForm
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView
 
 class HomeNews(ListView):
     #object_list
@@ -54,23 +54,34 @@ class NewsByCategory(ListView):
 #     }
 #     return render(request, 'newsapp/category.html', context = context)
 
-def show_news(request,news_id):
-    article = News.objects.get(id = news_id)
-    context = {
-        "article":article
-    }
-    return render(request, 'newsapp/article.html', context=context)
+class DetailNews(DetailView):
+    model = News
+    pk_url_kwarg = 'news_id'
+    template_name = 'newsapp/article.html'
+    context_object_name = 'article'
 
-def add_news(request):
-    if request.method == 'POST':
-        form = NewsForm(request.POST)
-        if form.is_valid():
-            # print(form)
-            news = form.save()
-            return redirect('mainpage')
-    else:
-        form = NewsForm()
-    return render(request, 'newsapp/add_news.html', {'form':form})
+# def show_news(request,news_id):
+#     article = News.objects.get(id = news_id)
+#     context = {
+#         "article":article
+#     }
+#     return render(request, 'newsapp/article.html', context=context)
+
+class CreateNews(CreateView):
+    # model = News
+    form_class  = NewsForm
+    template_name = 'newsapp/add_news.html'
+
+
+# def add_news(request):
+#     if request.method == 'POST':
+#         form = NewsForm(request.POST,request.FILES)
+#         if form.is_valid():
+#             news = form.save()
+#             return redirect('mainpage')
+#     else:
+#         form = NewsForm()
+#     return render(request, 'newsapp/add_news.html', {'form':form})
 
 def about(request):
     return render(request, 'newsapp/aboutus.html')

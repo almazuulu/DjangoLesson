@@ -13,7 +13,6 @@ class NewsForm(forms.ModelForm):
         }
 
 
-
     # title = forms.CharField(max_length=250, label= 'Заголовок новости', widget = forms.TextInput(
     #     attrs = {"class":"form-control"}
     # ))
