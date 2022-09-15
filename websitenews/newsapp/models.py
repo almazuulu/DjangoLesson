@@ -23,7 +23,7 @@ class News(models.Model):
                                  null = True, verbose_name = 'Категория')
 
     def get_absolute_url(self):
-        return reverse('mainpage', kwargs = {"pk": self.pk})
+        return reverse('mainpage')
 
         # return reverse('show_news', kwargs={"pk": self.pk})
 
@@ -36,7 +36,6 @@ class News(models.Model):
         verbose_name_plural = 'Новости'
         ordering = ['-created_at']
 
-
 class Category(models.Model):
     title_category = models.CharField(max_length = 250, db_index = True,
                                       verbose_name = 'Имя категории')
@@ -48,3 +47,16 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
         ordering = ['title_category']
+
+class Aboutus(models.Model):
+    telegram_link = models.CharField(max_length = 250, verbose_name = 'Телеграм аккаунт')
+    whatsapp_link = models.CharField(max_length = 250, verbose_name = 'WhatsApp аккаунт')
+    email_link = models.CharField(max_length = 250, verbose_name = 'Почта')
+
+    def __str__(self):
+        return self.email_link
+
+    class Meta:
+        verbose_name = 'Информация о нас'
+        verbose_name_plural = 'Информации о нас'
+

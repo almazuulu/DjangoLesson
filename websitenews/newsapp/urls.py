@@ -13,6 +13,7 @@ urlpatterns = [
     path('article/<int:news_id>/',DetailNews.as_view(), name='show_news'),
     path('article/add-news/', CreateNews.as_view(), name = 'add_news'),
     # path('article/add-news/', add_news, name='add_news'),
+    path('successemail', successemail, name = 'successemail'),
     re_path(r'aboutus/', about, name='aboutus'),
     re_path(r'contactus/', contact_us, name = 'contactus'),
 

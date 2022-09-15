@@ -62,27 +62,40 @@
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+      {% for contact in aboutus  %}
 
-        <h2>Heading</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
+      {% if contact.whatsapp_link %}
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-        <h2>Heading</h2>
-        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+<!--        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://24hp.ru/wp-content/uploads/2020/05/Whatsapp-Clipart-PNG-Image.png">
+        <h2>WhatsApp</h2>
+        <p>Чтобы связаться по Whatsapp кликните по ссылке ниже</p>
+        <p class="mt-3"><a class="btn btn-success" href="{{ contact.whatsapp_link }}">Отправить сообщение</a></p>
       </div><!-- /.col-lg-4 -->
+        {% endif %}
+
+      {% if contact.telegram_link %}
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-        <h2>Heading</h2>
-        <p>And lastly this, the third column of representative placeholder content.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+<!--        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://avatars.mds.yandex.net/i?id=138caeb9a6842fd9c92ee4859d424c85-5286894-images-thumbs&n=13&exp=1">
+        <h2>Telegram</h2>
+        <p>Чтобы связаться по Telegram кликните по ссылке ниже</p>
+        <p class="mt-3"><a class="btn btn-success" href="{{ contact.telegram_link }}">Отправить сообщение</a></p>
       </div><!-- /.col-lg-4 -->
+        {% endif %}
+
+      {% if contact.email_link %}
+      <div class="col-lg-4">
+<!--        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://thumb.tildacdn.com/tild3463-6262-4535-b461-356539663734/-/format/webp/logo-gmail-png-for-g.png">
+        <h2>Почта</h2>
+        <p>Чтобы связаться по почте кликните по ссылке ниже</p>
+        <p class="mt-3"><a class="btn btn-success" href="mailto:{{ contact.email_link }}">Отправить почту</a></p>
+      </div><!-- /.col-lg-4 -->
+        {% endif %}
+
+      {% endfor %}
+
     </div><!-- /.row -->
 
 

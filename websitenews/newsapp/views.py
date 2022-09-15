@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import News, Category
-from .forms import NewsForm
+from .models import News, Category, Aboutus
+from .forms import NewsForm, ContactForm
 from django.views.generic import ListView, DetailView, CreateView
+from django.core.mail import send_mail, BadHeaderError
 
 class HomeNews(ListView):
     #object_list
@@ -84,8 +85,35 @@ class CreateNews(CreateView):
 #     return render(request, 'newsapp/add_news.html', {'form':form})
 
 def about(request):
-    return render(request, 'newsapp/aboutus.html')
+    aboutus = Aboutus.objects.all()
+    context = {
+        "aboutus":aboutus
+    }
+    return render(request, 'newsapp/aboutus.html', context = context)
+
+def successemail(request):
+    return render(request, 'newsapp/successemail.html')
 
 def contact_us(request):
-    return render(request, 'newsapp/contactus.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            email_visitor = form.cleaned_data['email']
+            subject_visitor = form.cleaned_data['subject']
+            content_message = form.cleaned_data['message']
+            try:
+                mail = send_mail(subject_visitor, content_message,
+                                 email_visitor, ['aselya_9308@mail.ru'])
+            except BadHeaderError:
+                return HttpResponse('Error sending')
+
+            return redirect('successemail')
+    else:
+        form = ContactForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'newsapp/contactus.html', context = context)
 

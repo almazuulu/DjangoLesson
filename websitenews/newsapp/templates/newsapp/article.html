@@ -2,11 +2,11 @@
 {% block sidebar %}
 <div class="col-md-4">
              {% include 'sidebar.html' %}
-    <div>
+</div>
 {% endblock %}
 
 {% block content %}
-        <div class="col-md-8">
+    <div class="col-md-8">
             <div class="card mb-3">
                   <div class="card-header text-center">
                     Категория: {{ article.category.title_category }}
@@ -33,6 +33,7 @@
 <!--                  </div>-->
                 </div>
               </div>
-        </div>
+    </div>
 {% endblock %}
+
 
