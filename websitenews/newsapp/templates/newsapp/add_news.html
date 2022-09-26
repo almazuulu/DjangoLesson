@@ -1,5 +1,6 @@
 {% extends 'main.html' %}
-
+{% block title %} {{ title }} {% endblock %}
+{% load static %}
 {% block sidebar %}
 <div class="col-md-4">
         {% include 'sidebar.html' %}
@@ -39,4 +40,9 @@
                <button class="btn btn-info mt-3" type="submit">Добавить новость</button>
         </form>
 </div>
+
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+
 {% endblock %}

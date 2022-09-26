@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 # from newsapp.views import index, about, contact_us
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('captcha/', include('captcha.urls')),
     path('', include('newsapp.urls')),
 ]
 

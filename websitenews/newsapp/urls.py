@@ -14,7 +14,12 @@ urlpatterns = [
     path('article/add-news/', CreateNews.as_view(), name = 'add_news'),
     # path('article/add-news/', add_news, name='add_news'),
     path('successemail', successemail, name = 'successemail'),
+    path('test/', test, name= 'test'),
+    path('register/', register, name = 'register'),
+    path('login/', user_login, name = 'login'),
+    path('logout/', user_logout, name='logout'),
     re_path(r'aboutus/', about, name='aboutus'),
     re_path(r'contactus/', contact_us, name = 'contactus'),
+
 
 ]

@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<div class="justify-content-center">
+        <h1> Авторизация</h1>
+        <form action="{% url 'login' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+                {{ form.as_p }}
+                 <div class="d-grid gap-2">
+                         <button class="btn btn-info mt-3" type="submit">Зайти</button>
+                </div>
+        </form>
+</div>
+{% endblock %}

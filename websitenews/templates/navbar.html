@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" href="{ % url 'mainpage' %}">Новости</a>
+          <a class="nav-link active" href="{% url 'mainpage' %}">Новости</a>
         </li>
           <li class="nav-item">
           <a class="nav-link" href="{% url 'contactus' %}">Свяжитесь с нами</a>
@@ -26,15 +26,23 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'aboutus' %}" tabindex="-1" aria-disabled="true">О Нас</a>
         </li>
-              </li>
-          <li class="nav-item">
-          <a class="nav-link" href="{% url 'add_news' %}">Добавить новость</a>
-        </li>
+
+          {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add_news' %}">Добавить новость</a>
+            </li>
+          {% endif %}
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Поиск..." aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Поиск</button>
-      </form>
+
+       <span class="navbar-text">
+         {% if request.user.is_authenticated %}
+              Добро пожаловать {{ user.username }}! | <a href="{% url 'logout' %}" class="h6 text-info"> Выйти </a>
+         {% else %}
+            <a href="{% url 'register' %}" class="h6">Регистрация</a> | <a href="{% url 'login' %}" class="h6"> Авторизация</a>
+         {% endif %}
+       </span>
+
+
     </div>
   </div>
 </nav>

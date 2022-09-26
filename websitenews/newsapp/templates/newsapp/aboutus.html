@@ -1,4 +1,5 @@
 {% extends 'main.html' %}
+{% block title %} {{ title }} {% endblock %}
 {% load static %}
 {% block content %}
 
@@ -14,9 +15,9 @@
             <img class="bd-placeholder-img" width="100%" height="100%"  src="https://avatars.mds.yandex.net/i?id=b4c33f50c5f12038e120dbc0e1dc15a5-4491734-images-thumbs&n=13&exp=1">
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+            <h1>Актуальные новости</h1>
+            <p style="color: white">Самые последние и обсуждаемые</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'contactus' %}">Свяжитесь с нами</a></p>
           </div>
         </div>
       </div>
@@ -25,9 +26,9 @@
             <img class="bd-placeholder-img" width="100%" height="100%"  src="https://cdn.fishki.net/upload/post/2020/03/25/3267730/7da19c019f519b2eee94281336bb2f13.jpg">
         <div class="container">
           <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+           <h1>Свежие новости</h1>
+            <p style="color: white">Самые трендовые</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'mainpage' %}">Почитать новость</a></p>
           </div>
         </div>
       </div>
@@ -37,20 +38,20 @@
 
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+            <h1>Жизненные новости</h1>
+            <p style="color: white">Жизненные последние и обсуждаемые новости</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'contactus' %}">Свяжитесь с нами</a></p>
           </div>
         </div>
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
+      <span class="visually-hidden">Предыдущее</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+      <span class="visually-hidden">Следующее</span>
     </button>
   </div>
 
@@ -105,12 +106,12 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+        <h2 class="featurette-heading"> Филиал новости в Бишкеке <span class="text-muted"> Головной отдел</span></h2>
+        <p class="lead">ул. Чуй 123, пересекает ул. Манаса</p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+<!--        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>-->
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://fotorelax.ru/wp-content/uploads/2020/06/bishkek-s-vysoty-stolica-u-podnozhja-gor-9856615.jpg"/>
       </div>
     </div>
 
@@ -118,12 +119,12 @@
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+        <h2 class="featurette-heading"> Второй новостной филиал в г. Оше <span class="text-muted"> Новости с Южного региона</span></h2>
+        <p class="lead">Адрес: г. Ош, ул. Масалиева 123/3</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+<!--        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>-->
+          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="http://gwc-planet.ru/thumb/2/dIB3WoePL6KbUFASDzCcnQ/r/d/osh_4.jpg"/>
       </div>
     </div>
 
@@ -131,11 +132,12 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+        <h2 class="featurette-heading"> Новостной отдел на Иссык Куле <span class="text-muted"> Новости туризма и отдыха с Иссык куля</span></h2>
+        <p class="lead">г.Чолпон-Ата, ул. Темирязева 17</p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+<!--        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>-->
+          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://vandrouki.ru/wp-content/uploads/2021/07/152-1536x1059.jpeg"/>
 
       </div>
     </div>

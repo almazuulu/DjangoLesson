@@ -1,23 +1,68 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import News, Category, Aboutus
-from .forms import NewsForm, ContactForm
+from .forms import NewsForm, ContactForm, UserRegistrationForm, UserLoginForm
 from django.views.generic import ListView, DetailView, CreateView
 from django.core.mail import send_mail, BadHeaderError
+from django.core.paginator import Paginator
+
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth import login, logout
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+
+            messages.success(request, 'Регистрация прошла успешно!')
+            return redirect('login')
+        else:
+            messages.error(request, 'Ошибка регистрации!')
+    else:
+        form = UserRegistrationForm()
+
+    return render(request, 'newsapp/register.html', {"form": form})
+
+def user_login(request):
+    if request.method == 'POST':
+        form = UserLoginForm(data = request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('mainpage')
+    else:
+        form = UserLoginForm()
+    return render(request, 'newsapp/login.html', {"form": form})
+
+def user_logout(request):
+    logout(request)
+    return redirect('login')
+
+def test(request):
+    object = ['john', 'paul', 'george', 'ringo',
+              'john1', 'paul1', 'george1', 'ringo1',
+              'john2', 'paul2', 'george2', 'ringo2',
+              'john3', 'paul3', 'george3', 'ringo3']
+
+    paginator = Paginator(object, 2)
+    page_num = request.GET.get('page', 1)
+    page_object = paginator.get_page(page_num)
+
+    return render(request, 'newsapp/test.html', {'page_obj': page_object})
 
 class HomeNews(ListView):
-    #object_list
     model = News
     template_name = 'newsapp/index.html'
     context_object_name = 'allnews'
-    # region_list = ['Bishkek', 'Osh', 'JA', 'Talas', 'IK', 'Naryn', 'Batken']
-    # extra_context = {'title': 'Новости Кыргызстана'}
+    paginate_by = 3
+
 
     def get_context_data(self,*, object_list =None,  **kwargs):
         context = super().get_context_data(**kwargs)
-        # region_list = ['Bishkek', 'Osh', 'JA', 'Talas', 'IK', 'Naryn', 'Batken']
-        # context['regions'] = region_list
-        context['title'] = 'И Новости Кыргызстана'
+        context['title'] = 'Новости Кыргызстана'
 
         return context
 
@@ -40,6 +85,8 @@ class NewsByCategory(ListView):
 
     def get_context_data(self,*, object_list =None,  **kwargs):
         context = super().get_context_data(**kwargs)
+        category_name = Category.objects.get(pk = self.kwargs['category_id'])
+        context['title'] = category_name
         return context
 
     def get_queryset(self):
@@ -73,6 +120,10 @@ class CreateNews(CreateView):
     form_class  = NewsForm
     template_name = 'newsapp/add_news.html'
 
+    def get_context_data(self,*, object_list =None,  **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Добавление новости'
+        return context
 
 # def add_news(request):
 #     if request.method == 'POST':
@@ -87,7 +138,8 @@ class CreateNews(CreateView):
 def about(request):
     aboutus = Aboutus.objects.all()
     context = {
-        "aboutus":aboutus
+        "aboutus":aboutus,
+        'title': 'О Нас'
     }
     return render(request, 'newsapp/aboutus.html', context = context)
 
@@ -103,7 +155,7 @@ def contact_us(request):
             content_message = form.cleaned_data['message']
             try:
                 mail = send_mail(subject_visitor, content_message,
-                                 email_visitor, ['aselya_9308@mail.ru'])
+                                 email_visitor, ['almazovi4.a@gmail.com'])
             except BadHeaderError:
                 return HttpResponse('Error sending')
 
@@ -112,7 +164,8 @@ def contact_us(request):
         form = ContactForm()
 
     context = {
-        'form': form
+        'form': form,
+        'title': 'Обратная связь'
     }
 
     return render(request, 'newsapp/contactus.html', context = context)

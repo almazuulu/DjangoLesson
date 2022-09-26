@@ -1,4 +1,5 @@
 {% extends 'main.html' %}
+{% block title %} {{ title }} {% endblock %}
 {% block sidebar %}
 <div class="col-md-4">
         {% include 'sidebar.html' %}
@@ -23,9 +24,11 @@
 
                               {% endif %}
                           </div>
+                          {% autoescape off %}
                           <div class="col-md-8">
                                  <p class="card-text">{{ i.content |linebreaks |truncatewords:90 }}</p>
                           </div>
+                          {% endautoescape %}
                       </div>
 
 

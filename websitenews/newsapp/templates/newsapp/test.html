@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% block content %}
+    <h1> Тестирование страниц </h1>
+
+    {% for name in page_obj.object_list %}
+        <p>{{ name }}</p>
+    {% endfor %}
+
+
+
+{% endblock %}
